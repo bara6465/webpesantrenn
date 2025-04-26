@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+
+        <title>Lokasi bangunan pondok peseantren Al-Munawwir</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/mosque.png" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+         <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+        <!-- Leaflet CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <!-- Leaflet JS -->
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+        
+
+    <style>
+
+        .legend {
+            background: white;
+            padding: 10px;
+            line-height: 18px;
+            color: #555;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        body {
+          font-family: Poppins;
+          margin: 0;
+          padding: 0;
+        }
+        .navbar {
+          background: #146B55;
+          color: #146B55;
+          height: 65px;
+          display: flex;
+          padding: 0 5%;
+          align-items: center;
+          justify-content: space-between;
+          box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+        }
+        #map {
+          position: absolute;
+          margin: 0px 0px;
+          top: 10px;
+          bottom: 0px;
+        }
+        #fly {
+          display: block;
+          position: relative;
+          margin: 5px 50px;
+          height: 31px;
+          border: none;
+          border-radius: 5px;
+          font-size: 12px;
+          text-align: center;
+          color: #fff;
+          background: red;
+
+        .legend {
+        background: white;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        line-height: 18px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        .legend i {
+        width: 18px;
+        height: 18px;
+        float: left;
+        margin-right: 8px;
+        opacity: 0.7;
+        }
+        #fly {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 1000;
+        background: #ff0000;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+        }
+        .mapboxgl-popup {
+          max-width: 400px;
+          font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        }
+        .legend {
+            margin: 20px 20px;
+            background-color: #fff;
+            border-radius: 3px;
+            bottom: 30px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            padding: 10px;
+            position: absolute;
+            left: 10px;
+            z-index: 1;
+        }
+        .legend h4 {
+            margin: 0 0 10px;
+        }
+        .legend div span {
+            border-radius: 0%;
+            display: inline-block;
+            height: 10px;
+            margin-right: 5px;
+            width: 10px;
+        }
+        .bg-image {
+            background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.4), white), url('assets/image/pesantren.jpg');
+            opacity: 0.9;
+            color: white;
+        }
+        p {
+            display: flex;
+            flex-direction: column;
+        }
+      </style>
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" style="color: rgba(20, 107, 85);" href="#">Pondok Pesantren Al-Munawwir</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Blog</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </body>
+    
+    <!-- Page header with logo and tagline-->
+<header class="bg-image py-5 border-bottom mb-4">
+    <div class="container">
+        <div class="text-center my-5 text-white">
+            <h1 class="fw-bolder" style="color: #146B55;">Lokasi Bangunan Pondok Pesantren Al-Munawwir</h1>
+            <p class="lead mb-0" style="color: #146B55;">Pondok Pesantren Al-Munawwir</p>
+        </div>
+    </div>
+</header>
+<!-- Page content-->
+<div class="container">
+    <div class="row">
+        <!-- Right Side -->
+        <div class="col-lg-3">
+            <!-- Petunjuk -->
+            <div class="card mb-4" style="color: #146B55;">
+                <div class="card-header" style="font-weight: bold;">Petunjuk</div>
+                <div class="card-body">
+                    <p><span>1. Gunakan tombol zoom in <img src="assets/image/in.png" width="20px">, zoom out <img src="assets/image/out.png" width="20px">, dan reset bearing to north <img src="assets/image/bearing.png" width="20px"> untuk mengatur posisi peta.</span></p>
+                    <p><span>2. Titik biru bertuliskan huruf "A" merupakan titik lokasi Anda.</span></p>
+                    <p><span>3. Klik tombol <img src="assets/image/lokasi.png" width="20px"> untuk menampilkan lokasi Pondok Pesantren Al-Munawwir.</span></p>
+                    <p><span>4. Klik salah satu bangunan sebagai tujuan destinasi.</span></p>
+                    <p><span>5. Rute ditampilkan sebagai garis biru pada peta.</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="col-lg-9">
+            <!-- Map -->
+            <div class="card mb-4">
+                <div class="card">
+                    <div class="card-body" style="height: 510px;">
+                    <div id="map" style="height: 500px; width: 100%;"></div>
+                    <script>
+                    // Membuat peta baru
+                    var map = L.map('map').setView([-7.797068, 110.370529], 13); // (Latitude, Longitude, Zoom)
+                    // Menambahkan tile layer dari OpenStreetMap
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                      attribution: '© OpenStreetMap contributors'
+                    }).addTo(map);
+                    fetch('assets/geojsn/asrama putra geojsn.geojson')
+                      .then(response => response.json())
+                      .then(data => {
+                        L.geoJSON(data, {
+                          style: {
+                            color: '#1e3d59', // Outline color
+                            weight: 1,               // Outline thickness
+                            fillColor: '#1e3d59', // Fill color
+                            fillOpacity: 1
+                          },
+                          onEachFeature: function (feature, layer) {
+                            layer.on({
+                                mouseover: function (e) {
+                                    var layer = e.target;
+                                    layer.bindPopup(feature.properties.Nama).openPopup();
+                                    layer.setStyle({
+                                    weight: 3,
+                                    color: '#666'
+                                    });
+                                },
+                                mouseout: function (e) {
+                                    var layer = e.target;
+                                    layer.closePopup();
+                                    layer.setStyle({
+                                    weight: 1,
+                                    color: 'black'
+                                    });
+                                }
+                                });
+                            }
+                            }).addTo(map);
+                        });
+                    fetch('assets/geojsn/asrama putri geojsn.geojson')
+                      .then(response => response.json())
+                      .then(data => {
+                        L.geoJSON(data, {
+                          style: {
+                            color: 'black',         // Outline color
+                            weight: 1,               // Outline thickness
+                            fillColor: '#ff6e40',     // Fill color (sama seperti Mapbox kamu)
+                            fillOpacity: 1            // Fill opacity
+                         },
+                         onEachFeature: function (feature, layer) {
+                            layer.on({
+                                mouseover: function (e) {
+                                    var layer = e.target;
+                                    layer.bindPopup(feature.properties.Nama).openPopup();
+                                    layer.setStyle({
+                                    weight: 3,
+                                    color: '#666'
+                                    });
+                                },
+                                mouseout: function (e) {
+                                    var layer = e.target;
+                                    layer.closePopup();
+                                    layer.setStyle({
+                                    weight: 1,
+                                    color: 'black'
+                                    });
+                                }
+                                });
+                            }
+                            }).addTo(map);
+                        }); 
+                     fetch('assets/geojson/bangunanumum.geojson')
+                        .then(response => response.json())
+                        .then(data => {
+                        L.geoJSON(data, {
+                            style: {
+                            color: 'black',         // Warna outline
+                            weight: 1,               // Ketebalan garis
+                            fillColor: '#ffc13b',     // Warna isi
+                            fillOpacity: 1           // Transparansi isi
+                            },
+                            onEachFeature: function (feature, layer) {
+                                layer.on({
+                                    mouseover: function (e) {
+                                        var layer = e.target;
+                                        layer.bindPopup(feature.properties.Nama).openPopup();
+                                        layer.setStyle({
+                                        weight: 3,
+                                        color: '#666'
+                                        });
+                                    },
+                                    mouseout: function (e) {
+                                        var layer = e.target;
+                                        layer.closePopup();
+                                        layer.setStyle({
+                                        weight: 1,
+                                        color: 'black'
+                                        });
+                                    }
+                                    });
+                                }
+                                }).addTo(map);
+                            });
+                     if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            var userLocation = L.latLng(position.coords.latitude, position.coords.longitude);
+                            var tujuanPesantren = L.latLng(-7.797068, 110.370529);
+
+                            L.Routing.control({
+                            waypoints: [userLocation, tujuanPesantren],
+                            routeWhileDragging: true
+                            }).addTo(map);
+                        }, function() {
+                            alert('Gagal mendapatkan lokasi Anda!');
+                        });
+                        } else {
+                        alert('Browser tidak mendukung geolocation');
+                        }
+                        document.getElementById('fly').addEventListener('click', function() {
+                            map.flyTo([-7.797068, 110.370529], 17, {
+                            animate: true,
+                            duration: 2
+                            });
+                        });
+                        let isAtStart = true;
+
+                        // Definisikan 2 titik
+                        const start = [-7.797068, 110.370529]; // Titik awal (misal Pesantren)
+                        const end = [-7.800000, 110.360000];   // Titik lain (misal titik kedua)
+
+                        document.getElementById('fly').addEventListener('click', function() {
+                        const target = isAtStart ? end : start;  // Kalau sekarang di A, maka ke B
+                        isAtStart = !isAtStart; // Ganti status
+
+                        map.flyTo(target, 17, {
+                            animate: true,
+                            duration: 2  // durasi animasi dalam detik
+                        });
+                        });
+                     var legend = L.control({ position: 'bottomleft' });
+                        legend.onAdd = function (map) {
+                            var div = L.DomUtil.create('div', 'legend');
+                            div.innerHTML += '<i style="background: #1e3d59"></i> Asrama Putra<br>';
+                            div.innerHTML += '<i style="background: #ff6e40"></i> Asrama Putri<br>';
+                            div.innerHTML += '<i style="background: #ffc13b"></i> Bangunan Umum<br>';
+                            return div;
+                        };
+                        legend.addTo(map);
+
+</script>
+                    </script>
+                    <button id="fly">Lokasi Pesantren</button>
+                    <div id="state-legend" class="legend">
+                        <h7 style="font-weight: bold;">Legenda</h7>
+                        <div><span style="background-color: #1e3d59;"></span>Asrama Putra</div>
+                        <div><span style="background-color: #ff6e40;"></span>Asrama Putri</div>
+                        <div><span style="background-color: #ffc13b;"></span>Bangunan Umum</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</script>  
+<footer class="py-5" style="background-color: rgba(20, 107, 85);">
+    <div class="container">
+      <p class="m-0 text-center text-white">
+        Copyright &copy; Arounta Habara 117200067
+      </p>
+    </div>
+  </footer>
+        
+</html>
